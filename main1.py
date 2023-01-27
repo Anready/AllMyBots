@@ -27,20 +27,6 @@ k = ""
 all = []
 
 
-def main(user_id):
-    my_user_id = user_id
-    all.append(my_user_id)
-
-    keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-    button_geo1 = types.KeyboardButton(text="Погода в Киеве")
-    button_geo3 = types.KeyboardButton(text="Погода в Кривом Роге")
-    button_geo = types.KeyboardButton(text="Погода по местоположению", request_location=True)
-    button_geo4 = types.KeyboardButton(text="Погода в Днепре")
-    button_geo5 = types.KeyboardButton(text="Погода в Одессе")
-    keyboard.add(button_geo1,button_geo3)
-    keyboard.add(button_geo)
-    keyboard.add(button_geo4,button_geo5)
-    bot.send_message(user_id,"Введите 🗺город🗺 чтобы белка определила погоду. \nИли вы можете найти погоду по 🧭местоположению🧭", reply_markup=keyboard)
 
 @bot.message_handler(content_types=['location'])
 def location (message):
@@ -60,7 +46,19 @@ def location (message):
 @bot.message_handler(commands = ['start'])
 def start(message):
     user_id = message.chat.id
-    main(user_id)
+    my_user_id = user_id
+    all.append(my_user_id)
+
+    keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+    button_geo1 = types.KeyboardButton(text="Погода в Киеве")
+    button_geo3 = types.KeyboardButton(text="Погода в Кривом Роге")
+    button_geo = types.KeyboardButton(text="Погода по местоположению", request_location=True)
+    button_geo4 = types.KeyboardButton(text="Погода в Днепре")
+    button_geo5 = types.KeyboardButton(text="Погода в Одессе")
+    keyboard.add(button_geo1,button_geo3)
+    keyboard.add(button_geo)
+    keyboard.add(button_geo4,button_geo5)
+    bot.send_message(user_id,"Введите 🗺город🗺 чтобы белка определила погоду. \nИли вы можете найти погоду по 🧭местоположению🧭", reply_markup=keyboard)
 
 @bot.message_handler(commands = ['restart'])
 def start(message):
